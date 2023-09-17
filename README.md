@@ -1,24 +1,39 @@
 # DSSD 2023-2024 Admissions Assessment
 
-This repository has starter code that you will build on to show your skills as a developer. [Fork this repository](https://github.com/DSSD-Madison/oa-2023-24/fork) to get started on your own copy.
+## Project Overview
 
-Currently, the repository contains some frontend code for a webpage with a graph (made with [Plotly.js](https://plotly.com/javascript/)) populated with mock data recieved from a backend server.
+The project revolves around performing data analysis and hypothesis testing on Airbnb listing data for the city of Seattle. The dataset, obtained from Inside Airbnb, provides a rich source of information about Airbnb listings, including their prices, locations, and various other attributes.
 
-**Your job:** Populate the graphs with real data.
+## Key Components
 
-Your "real data" can come from anywhere: a file that you find on something like [kaggle](https://www.kaggle.com/), an enterprise API, Google BigQuery, etc.
+### Hypothesis Testing Results
 
-To do this, either modify the sample Express.js backend in the [backend](./backend/) folder, or create a new backend in your language/framework of your choice.
+One of the primary components of this project is the hypothesis testing. The analysis is aimed at determining whether the distribution of Airbnb listing prices across the city of Seattle exhibits a spatial pattern or if it's purely random. This involves formulating hypotheses, conducting statistical tests, and interpreting the results.
 
-Since most backends will need environment configurations for secret credentials and such, and might require different steps to run locally, we require you to deploy your backend. One free and easy to use service that supports most popular runtime environments is [render](https://render.com), but feel free to use whatever service you'd like. You can just hardcode the URL to your deployed backend endpoint like the sample code has done in [graph.mjs](./frontend/graph.mjs).
+### Interactive Visualization
 
-Make sure to update the webpage to explain the data that your graphs are populated with.
+To enhance the understanding of the data and the results of the hypothesis testing, interactive visualizations have been created. These visualizations help in presenting complex information in a more comprehensible manner.
 
-We will view your submission using the VS Code [Live Server Extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) to serve the frontend on `http://localhost:5500`, so make sure that is whitelisted for [cors](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) on your backend server
+## Results
 
-Ways to go above and beyond include, but are not limited to:
-- use a practical data source i.e. not just a file
-- make your graph update in real time
-- apply some secondary processing on the data i.e. create new insights on the data
-  - the more advanced the data science technique, the more impressed we will be
-- improve the visual appeal of the webpage
+You can explore the results of the hypothesis testing and the interactive visualizations by visiting the following link:
+
+- [Hypothesis Testing Results HTML](frontend/hypothesis_testing.html)
+
+## Data Source
+
+The data used for this project has been obtained from [Inside Airbnb](http://insideairbnb.com/), a valuable resource for Airbnb data enthusiasts and researchers.
+
+## Project Repository
+
+To access the project's source code, including scripts and other project files, you can visit the GitHub repository at:
+
+- [GitHub Repository](https://github.com/R1SE23/oa-2023-24)
+
+## Running the Project
+
+To run the project, execute the following command:
+
+```bash
+npm start
+```
