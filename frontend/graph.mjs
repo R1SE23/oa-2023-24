@@ -7,7 +7,7 @@ let map;
 // Create a marker cluster group
 const markers = L.markerClusterGroup();
 
-fetch("http://localhost:3000/data")
+fetch("https://airbnb-seattle.onrender.com/data")
   .then((response) => response.json())
   .then((data) => {
     const validData = data.filter((row) => row.latitude && row.longitude);
