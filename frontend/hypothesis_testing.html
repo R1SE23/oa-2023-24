@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Airbnb Prices Analysis in Seattle</title>
+    <style>
+      /* Global Styles */
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 40px;
+        color: #333;
+        background-color: #f8f9fa;
+        line-height: 1.6;
+      }
+
+      /* Headers */
+      h1,
+      h2,
+      h3,
+      h4 {
+        margin-bottom: 20px;
+      }
+
+      h1 {
+        color: #0056b3;
+      }
+
+      h2,
+      h3 {
+        color: #007bff;
+      }
+
+      /* Sections */
+      .section {
+        margin-bottom: 40px;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      .hypothesis-section,
+      .methodology-section,
+      .analysis-section {
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        background-color: #e9f0f7;
+      }
+
+      /* Articles */
+      article {
+        margin-bottom: 20px;
+      }
+
+      /* Lists */
+      ul {
+        padding-left: 20px;
+      }
+
+      /* Images */
+      figure {
+        text-align: center;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      /* Additional Enhancements */
+      p {
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <body>
+      <h1>Hypothesis Testing of Airbnb Listings in Seattle</h1>
+<section class="hypothesis-section">
+  <h3>Hypothesis Test for Airbnb Listing Prices</h3>
+  <p>
+    To determine whether the distribution of Airbnb listing prices across the
+    city is random or exhibits a spatial pattern, we set up the following
+    hypotheses:
+  </p>
+  <ul>
+    <li>
+      <strong>Null Hypothesis (H<sub>0</sub>):</strong> The distribution of
+      Airbnb listing prices in Seattle is random across space (α = 0.05).
+      There is no spatial autocorrelation in prices.
+    </li>
+    <li>
+      <strong>Alternative Hypothesis (H<sub>a</sub>):</strong> The distribution
+      of Airbnb listing prices in Seattle is not random, and there is a spatial
+      structure.
+    </li>
+  </ul>
+</section>
+
+
+      <section class="methodology-section">
+        <h3>Methodology</h3>
+        <article>
+          <h4>Defining Neighbors: Choosing a Contiguity Matrix:</h4>
+          <p>
+            To understand how a listing's price might be influenced by nearby
+            properties, we first need to define its 'neighbors'. The contiguity
+            matrix assists in this, defining which listings are considered
+            adjacent or neighboring. We rely on standard matrices, such as Queen
+            to set these criteria.
+          </p>
+        </article>
+
+        <article>
+          <h4>Quantifying Relationships: Weights Matrix</h4>
+          <p>
+            After determining neighbors, the next pivotal step is to quantify
+            the strength of their relationships. The weights matrix serves this
+            purpose, assigning weights to depict the relationship's influence.
+            For instance, immediate neighbors might have a more significant
+            influence on a listing than those located farther away.
+          </p>
+        </article>
+
+        <article>
+          <h4>Ensuring Uniformity: Standardizing the Rows:</h4>
+          <p>
+            Given the diversity of Seattle's neighborhoods, listings can vary in
+            the number of neighbors they have. To maintain consistency in our
+            analysis, standardize the rows, ensuring that every listing's
+            influence is uniformly considered.
+          </p>
+        </article>
+        <section class="images-section">
+         
+            <img
+              src="plot/queen_matrix.png"
+              alt="Queen W Matrix for Seattle's Airbnb listings"
+              width="400"
+              height="500"
+            />
+            <figcaption>
+              Queen W Matrix for Seattle's Airbnb listings
+            </figcaption>
+         
+        </section>
+      </section>
+
+      <section class="analysis-section">
+        <article>
+          <h3>Calculating Moran’s I:</h3>
+          <p>
+            With our weights matrix ready, we can now measure spatial
+            autocorrelation. Moran's I gives a bird's eye view, telling us if,
+            overall, similar-priced listings tend to be near each other. 
+          </p>
+        </article>
+
+        <article>
+          <h4>Moran's I Analysis</h4>
+
+          <img
+            src="plot/p_value.png"
+            alt="Moran's I Plot"
+            width="500"
+            height="400"
+          />
+
+          <p>
+            <strong>Moran's I Value (0.0769):</strong><br />
+            This is a measure of global spatial autocorrelation. The value can
+            range from -1 (indicating perfect dispersion) to 1 (perfect
+            correlation). A value close to 0 implies randomness. The result of
+            0.0769 suggests a very weak positive spatial autocorrelation. This
+            means that listings with similar prices are slightly more likely to
+            be located near each other than what would be expected if the prices
+            were distributed randomly.
+          </p>
+          <p>
+            <strong>Moran's I p-Value (0.001):</strong><br />
+            This indicates the statistical significance of your Moran's I value.
+            A p-value less than 0.05 suggests that the observed spatial pattern
+            (represented by Moran's I) is statistically significant and is not
+            likely due to random chance.
+          </p>
+
+          <img
+            src="plot/moran_plot.png"
+            alt="Moran's I Plot"
+            width="500"
+            height="400"
+          />
+
+          <p>
+            <strong>Conclusion</strong><br />
+            Therefore, we can reject the null hypothesis that the distribution
+            of Airbnb listing prices is random. While the spatial
+            autocorrelation in Airbnb prices is weak, it is statistically
+            significant, suggesting that there is a very slight tendency for
+            listings with similar prices to be located near each other in
+            Seattle.
+          </p>
+        </article>
+        </section>
+        <section class="analysis-section">
+          <article>
+            <h3>Further Analysis</h3>
+            <h4>LISA for Local Autocorrelation:</h4>
+            <p>
+              On the other end of the spectrum, LISA focuses on individual
+              listings to see
+            if its price is similar or different from its neighbors.
+            </p>
+            <p><strong>Value Range and Interpretation:</strong></p>
+            <ul>
+              <li>
+                Negative Values: Indicate negative spatial autocorrelation. In
+                the context of Airbnb prices, it means that a listing is
+                surrounded by listings with contrasting prices. For example, an
+                expensive listing might be surrounded by cheaper listings, or
+                vice versa.
+              </li>
+              <li>
+                Positive Values: Indicate positive spatial autocorrelation. This
+                means that a listing is surrounded by listings with similar
+                prices. For instance, an expensive listing is among other
+                expensive listings.
+              </li>
+              <li>
+                Values Close to 0: Indicate little to no spatial
+                autocorrelation, suggesting that the spatial pattern is close to
+                random.
+              </li>
+            </ul>
+
+            <img
+              src="plot/LISA.png"
+              alt="LISA analysis for Seattle's Airbnb listings"
+              width="300"
+              height="100"
+            />
+
+            <figcaption>LISA Analysis for Seattle's Airbnb listings</figcaption>
+            <p><strong>Colors Interpretation:</strong></p>
+            <ul>
+              <li>
+                Blue (-7.47 to -0.01): Strong negative spatial autocorrelation.
+                Listings are surrounded by listings with contrasting prices.
+              </li>
+              <li>
+                Light Blue (-0.01 to 0.01): Almost no spatial autocorrelation.
+                The distribution of prices is nearly random.
+              </li>
+              <li>
+                Light Red (0.01 to 0.06): Weak positive spatial autocorrelation.
+                There's some tendency for listings to have neighbors with
+                similar prices, but it's not very pronounced.
+              </li>
+              <li>
+                Red (0.06 to 101.36): Strong positive spatial autocorrelation.
+                Listings are very likely to be surrounded by listings with
+                similar prices.
+              </li>
+            </ul>
+          </article>
+
+         
+       
+        <article>
+          <h4>Visual Analysis</h4>
+           <article>
+          <p>
+            The circle markers represent individual listings. Their color
+            indicates the type of spatial autocorrelation they exhibit. Heatmap
+            layer visually represent the density of HH and LL clusters.
+          </p>
+            <ul>
+              <li>
+                red circle markers HH (High-High): Areas with high listing
+                prices surrounded by areas with similarly high prices.
+              </li>
+              <li>
+                dark blue LH (Low-High): Areas with low listing prices
+                surrounded by areas with high prices.
+              </li>
+              <li>
+                orange circle markers LL (Low-Low): Areas with low listing
+                prices surrounded by areas with similarly low prices.
+              </li>
+              <li>
+                blue markers HL (High-Low): Areas with high listing prices
+                surrounded by areas with low prices.
+              </li>
+              <li>
+                gray markers NS (Not Significant): Areas where the spatial
+                pattern of listing prices is not statistically
+              </li>
+            </ul>
+          </article>
+
+
+          
+        </article>
+        <section class="map-section">
+  <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+    <div style="flex: 1;margin-right: 10px;">
+      <h4>Map of Price Distribution:</h4>
+      <iframe src="plot/map_p_dist.html" width="100%" height="600"></iframe>
+    </div>
+    <div style="flex: 1; margin-right: 10px;">
+      <h4>Density of HH and LL Listings:</h4>
+      <iframe src="plot/quadrant_density.html" width="100%" height="600"></iframe>
+    </div>
+    <p>
+    <strong>Conclusions</strong><br />
+    Given the LISA analysis, we can identify areas or neighborhoods in Seattle where prices are consistently high or low. This can be valuable for potential Airbnb hosts (to set competitive prices) or for travelers (to find cheaper or more upscale neighborhoods). Understanding where these clusters of similar prices are can shed light on underlying factors affecting prices, e.g., proximity to tourist attractions, business districts, or public transportation. Recognizing areas where there's a mix (e.g., HL or LH) can indicate transitioning neighborhoods or areas with a broad range of accommodations.
+</p>
+
+<p>
+    <strong>Recommendations</strong><br />
+    For Airbnb hosts: Recognizing areas of strong positive autocorrelation (HH or LL) can guide pricing strategies. Being in a HH area might justify higher prices, while being in an LL area might suggest the need for competitive pricing or offering additional amenities. For City Planners or Tourism Boards: Understanding these spatial patterns can guide infrastructure development, tourism campaigns, or zoning decisions.
+</p>
+    
+  </div>
+   </section>
+</section>
+
+      </section>
+    </body>
+  </body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Map</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css"
+    />
+    <style>
+      /* General Button Styling */
+      .custom-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition-duration: 0.4s;
+      }
+
+      .custom-button:hover {
+        background-color: #45a049;
+      }
+
+      /* Dropdown Styling */
+      select.custom-dropdown {
+        font-size: 14px;
+        padding: 6px 10px;
+        margin: 0;
+        border: 1px solid #4caf50;
+        border-radius: 4px;
+        background-color: white;
+        cursor: pointer;
+      }
+
+      /* Information Box Styling */
+      .info-box {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #4caf50;
+        width: 250px;
+        margin-top: 10px;
+      }
+
+      #map {
+        width: 100%;
+        height: 100vh;
+      }
+
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      /* Control Container Styling */
+      .controls-container {
+        position: absolute;
+        bottom: 30px;
+        left: 10px;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="controls-container">
+      <select id="roomTypeFilter" class="custom-dropdown">
+        <option value="all">All Room Types</option>
+        <option value="Entire home/apt">Entire home/apt</option>
+        <option value="Shared room">Shared room</option>
+        <option value="Private room">Private room</option>
+        <option value="Hotel room">Hotel room</option>
+      </select>
+
+      <button id="heatmapToggle" class="custom-button">Toggle Heatmap</button>
+    </div>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.heat@latest/dist/leaflet-heat.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    <script type="module" src="graph.mjs"></script>
+  </body>
+</html>
